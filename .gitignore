@@ -1,0 +1,14 @@
+#Directories
+#----------
+.idea/
+.phpunit/
+vendor/
+
+# Files
+# -----
+.htaccess
+.user.ini
+composer.bat
+composer.lock
+composer.phar
+coverage-output

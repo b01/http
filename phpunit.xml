@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpunit bootstrap="tests/bootstrap.php"
+		 beStrictAboutChangesToGlobalState="true"
+		 beStrictAboutOutputDuringTests="true"
+		 beStrictAboutTestsThatDoNotTestAnything="true"
+		 checkForUnintentionallyCoveredCode="true"
+		 colors="false"
+		 coverage-text="true"
+		 forceCoversAnnotation="true"
+		 mapTestClassNameToCoveredClassName="true"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/5.1/phpunit.xsd">
+	<testsuites>
+		<testsuite name="All">
+			<directory>tests</directory>
+		</testsuite>
+	</testsuites>
+	<filter>
+		<blacklist>
+			<directory>.</directory>
+		</blacklist>
+		<whitelist>
+			<directory suffix=".php">src</directory>
+		</whitelist>
+	</filter>
+	<listeners>
+		<listener class="\Kshabazz\Interception\InterceptionListener">
+			<arguments>
+				<string>\Kshabazz\Interception\StreamWrappers\Http</string>
+				<string>\Kshabazz\Http\Tests\FIXTURES_DIR</string>
+				<array>
+					<element>
+						<string>http</string>
+					</element>
+					<element>
+						<string>https</string>
+					</element>
+				</array>
+			</arguments>
+		</listener>
+	</listeners>
+	<logging>
+		<log type="coverage-text" target="php://stdout" showUncoveredFiles="true" />
+		<log type="coverage-clover" target=".phpunit/coverage.xml" />
+		<log type="coverage-html" target=".phpunit/html" lowUpperBound="35" highLowerBound="70" />
+		<log type="testdox-html" target=".phpunit/html/testdox.html" />
+		<log type="testdox-text" target=".phpunit/testdox.txt" />
+		<log type="testdox-text" target="php://stdout" />
+	</logging>
+</phpunit>

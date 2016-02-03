@@ -1,0 +1,32 @@
+{
+	"authors": [
+		{
+			"name": "Khalifah Khalil Shabazz",
+			"homepage": "http://www.kshabazz.net",
+			"role": "Project Manager, Developer"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Kshabazz\\Http\\": "src"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Kshabazz\\Http\\Tests\\": "tests/Http"
+		}
+	},
+	"description": "An HTTP library that has a client which uses PSR-7 message implementations, using only the PHP stream wrapper functions.",
+	"name": "kshabazz/http",
+	"license": "MIT",
+	"require": {
+		"psr/http-message": "^1.0"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^5.0",
+		"kshabazz/interception": "^0.4"
+	},
+	"suggest": {
+		"php": ">=5.6, as this has only been tested with such."
+	}
+}
