@@ -1,4 +1,4 @@
-<?php namespace Kshabazz\Test\Slib;
+<?php namespace Kshabazz\Tests;
 
 use
 	\Kshabazz\Http\Client;
