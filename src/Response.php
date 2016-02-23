@@ -10,6 +10,8 @@ use
  */
 class Response extends Message implements ResponseInterface
 {
+	use Header;
+
 	/**
 	 * Response constructor.
 	 */

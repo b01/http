@@ -15,6 +15,8 @@ use \Psr\Http\Message\RequestInterface,
  */
 class Request extends Message implements RequestInterface
 {
+	use Header;
+
 	/**
 	 * Request constructor.
 	 */
