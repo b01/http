@@ -66,9 +66,23 @@ class HeaderTest extends \PHPUnit_Framework_TestCase
 	 * @covers ::getHeaderLine
 	 * @covers ::getMappedName
 	 */
-	public function testGetHeaderCaseInsensitive()
+	public function testCanSetWithMixedCaseAndGetWithAllCaps()
 	{
 		$this->headerTrait->addHeader( 'TeSt', '1234' );
+		$this->headerTrait->addHeader( 'TEST', '5678' );
+		$actual = $this->headerTrait->getHeaderLine( 'Test' );
+
+		$this->assertEquals( '1234,5678', $actual );
+	}
+
+	/**
+	 * @covers ::addHeader
+	 * @covers ::getHeaderLine
+	 * @covers ::getMappedName
+	 */
+	public function testCaseDoesNotMatterWhenSettingOrGettingAHeader()
+	{
+		$this->headerTrait->addHeader( 'test', '1234' );
 		$this->headerTrait->addHeader( 'TEST', '5678' );
 		$actual = $this->headerTrait->getHeaderLine( 'Test' );
 

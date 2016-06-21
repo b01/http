@@ -17,11 +17,20 @@ class Request extends Message implements RequestInterface
 {
 	use Header;
 
+	/** string */
+	const HEADER_HOST_NAME = 'Host';
+
+	/** @var array Preserved host name. */
+	private $preserveHost;
+
 	/**
 	 * Request constructor.
 	 */
 	public function __construct()
 	{
+		$this->preserveHost = false;
+
+		// TODO: Set Host header with URI if no Host header is set.
 	}
 
 	/**
@@ -141,9 +150,27 @@ class Request extends Message implements RequestInterface
 	 * @param bool $preserveHost Preserve the original state of the Host header.
 	 * @return self
 	 */
-	public function withUri(UriInterface $uri, $preserveHost = false)
+	public function withUri( UriInterface $uri, $preserveHost = FALSE )
 	{
-		// TODO: Implement
+		// TODO: Complete WIP...
+
+		if ( $preserveHost )
+		{
+			$this->preserveHost = [
+				'name' => $this->getMappedName( self::HEADER_HOST_NAME ),
+				'value' => $this->getHeaderLine( self::HEADER_HOST_NAME )
+			];
+		}
+
+		$uriHost = $uri->getHost();
+		$thisHost = $this->getHeaderLine( self::HEADER_HOST_NAME );
+		if ( (!$preserveHost && !empty($uriHost))
+			|| ($preserveHost && !empty($uriHost) && empty($thisHost))
+		) {
+			$this->withHeader( self::HEADER_HOST_NAME, $uri->getHost() );
+		}
+
+		return $this;
 	}
 }
 ?>
